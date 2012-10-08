@@ -7,14 +7,14 @@ input {
   }
   <% else %>    
     <% node['logstash']['server']['inputs'].each do |input| -%>
-     
+		
         <% input.each do |name,hash| -%> 
              <%= name %> {
                  <% hash.each do |k,v| -%>         
-                       <%= k %> => '<%= v %>'
+                       <%= k %> => <%= v.to_json %>
                  <% end -%>
-        <% end -%>
-        }
+		<% end -%>
+		}
      <% end -%>
   <% end -%>
 }
@@ -25,10 +25,10 @@ filter {
       <% filter.each do |name,hash| -%> 
          <%= name %> {
            <% hash.each do |k,v| -%>         
-             <%= k %> => '<%= v %>'
+             <%= k %> => <%= v.to_json %>
            <% end -%>
-      <% end -%>
-              }
+	  <% end -%>
+      }
    <% end -%>
 }
 <% end -%>
