@@ -89,6 +89,7 @@ if node['logstash']['agent']['install_method'] == "jar"
     mode "0755"
     source node['logstash']['agent']['source_url']
     checksum  node['logstash']['agent']['checksum']
+  not_if {File.exists?("#{node['logstash']['basedir']}/agent/lib/logstash-#{node['logstash']['agent']['version']}.jar")}
   end
   link "#{node['logstash']['basedir']}/agent/lib/logstash.jar" do
     to "#{node['logstash']['basedir']}/agent/lib/logstash-#{node['logstash']['agent']['version']}.jar"

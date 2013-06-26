@@ -133,7 +133,7 @@ end
 logrotate_app "logstash" do
   path "#{node['logstash']['basedir']}/server/log/*.log"
   frequency "daily"
-  rotate "30"
+  rotate "#{node['logstash']['server']['logrotate_count']}"
   create    "664 #{node['logstash']['user']} #{node['logstash']['user']}"
 end
 
